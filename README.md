@@ -1,0 +1,2 @@
+# newsLogReport
+Udacit
