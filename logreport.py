@@ -1,3 +1,8 @@
+'''
+    TO DO
+    1. Add SQL connection
+'''
+#import 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class HelloHandler(BaseHTTPRequestHandler):
