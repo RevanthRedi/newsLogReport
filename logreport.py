@@ -4,7 +4,7 @@
 '''
 #import 
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from logDb import get_posts
+from logDb import get_posts, get_posts1, get_posts2
 from flask import Flask, request, redirect, url_for
 
 app = Flask(__name__)
@@ -32,6 +32,10 @@ HTML_WRAP = '''\
     </form>
     <!-- post content will go here -->
 %s
+    
+%s
+
+%s
   </body>
 </html>
 '''
@@ -44,17 +48,29 @@ class HelloHandler(BaseHTTPRequestHandler):
         self.end_headers()
         # get_posts()
         posts = get_posts()
-        html = HTML_WRAP % str(posts)
+        posts1 = get_posts1()
+        posts2 = get_posts2()
+        html = HTML_WRAP % (str(posts), str(posts1), str(posts2))
+        self.wfile.write("1. Top three artilces\n\n".encode())
+        self.wfile.write("-----------------------------------\n".encode())
         for t in posts:
             # for i in t:
-            self.wfile.write((str(t[0]) + ' ' + str(t[1]) + '\n').encode())
+          
+          self.wfile.write((str(t[0]) + '\t | \t ' + str(t[1]) + '\n\n').encode())
         # self.wfile.write(str(posts).encode())
+        self.wfile.write("------------------------------------------\n".encode())
+        self.wfile.write("2. Authors of top 3 articles\n\n".encode())
+        for l in posts1:
+          self.wfile.write((str(l[0]) + ' \t | \t ' + str(l[1]) + '\n').encode())
+        self.wfile.write("------------------------------------------\n".encode())
+        self.wfile.write("3. On which days did more than 1% of requests lead to errors? \n\n".encode())
+        for m in posts2:
+
+          self.wfile.write((str(m[0]) + '\t | \t' + str(m[1]) + '\n').encode())
         return html
+
+
 if __name__ == '__main__':
     server_address = ('', 8000)
     httpd = HTTPServer(server_address, HelloHandler)
     httpd.serve_forever()
-
-
-    #Second Query
-    # select distinct a.name, a.id, b.author, b.title from authors a inner join articles b on a.id = b.author right join toptitle c on b.slug = c.title;
