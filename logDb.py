@@ -51,7 +51,7 @@ def get_posts2():
     print("3. On which days did more than 1% of requests lead to errors?")
     print("---------------------------------------------------------")
     for k in logs2:
-        print(str(k[0]) + '\t | \t' + str(k[1]) + '\n')
+        print(str(k[0]) + '\t | \t' + str(k[1]) + ' errors \n')
     print('\n')
     print(logs2)
 
