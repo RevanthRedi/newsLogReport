@@ -123,4 +123,4 @@ select * from ("
 ___
 
 ### Python Script
-Used [script](https://github.com/RevanthRedi/newsLogReport/blame/master/logDb.py) has python script that connects to `PostgreSQL` DB and gets result
+Used Python[script](https://github.com/RevanthRedi/newsLogReport/blame/master/logDb.py) that connects to `PostgreSQL` DB and gets result
