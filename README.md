@@ -81,7 +81,7 @@ _Created a view **top_3_articles** using following query to get top 3 articles(Q
   SELECT b.title,                                   +
      count(a.status) AS count                       +
     FROM (title a                                   +
-      JOIN articles b ON ((a."substring" = b.slug)))+
+      JOIN articles b ON ((a."substring" = b.slogDb.pylug)))+
    GROUP BY a."substring", b.title                  +
    ORDER BY (count(a.status)) DESC                  +
   LIMIT 3;
@@ -123,4 +123,4 @@ select * from ("
 ___
 
 ### Python Script
-Used Python[script](https://github.com/RevanthRedi/newsLogReport/blame/master/logDb.py) that connects to `PostgreSQL` DB and gets result
+Used Python [script](https://github.com/RevanthRedi/newsLogReport/blob/master/logDb.py) that connects to `PostgreSQL` DB and gets result
