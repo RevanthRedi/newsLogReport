@@ -1,6 +1,6 @@
 
 
-DATABASE:
+### DATABASE:
 Using inplace Database named "News" we are provided with three tables
   1. Authors
   2. Title
