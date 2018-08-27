@@ -58,7 +58,8 @@ Uisng these three tables we need to get answers to three questions by using Pyht
 
 _Using Logs table created view named **title** using following query which performs **string operation**  on path of article and results title of article._ 
 ```
-Crated a view named **title** using following Query
+create view title as select "substring"(log.path, 10), status, id, time from log;
+
   SELECT "substring"(log.path, 10) AS "substring",+
      log.status,                                  +
      log.id,                                      +
@@ -78,6 +79,8 @@ select b.title, count(a.status)
 ##### 2. Who are the most popular article authors of all time?
 _Created a view **top_3_articles** using following query to get top 3 articles(Query of Question 1)_
 ```
+create view top_3_articles as select b.title, count(a.status) from title a join articles b on a.substring = b.slug group by a.substring, b.title order by count desc limit 3;
+
   SELECT b.title,                                   +
      count(a.status) AS count                       +
     FROM (title a                                   +
@@ -98,6 +101,8 @@ select distinct a.name, b.title
 ##### 3. On which days did more than 1% of requests lead to errors?
 _Created a view **Percentage1** to get total number of requests on a single day_
 ```
+create view percentage1 as select count(status),date(time) from log   group by date(time);
+
   SELECT count(log.status) AS count,+
      date(log."time") AS date       +
     FROM log                        +
@@ -105,6 +110,8 @@ _Created a view **Percentage1** to get total number of requests on a single day_
 ```
 _Created view **error_code** to get number of requests resulted in error on a day_
 ```
+create view error_code as SELECT count(status), date(time) from log where status != '200 OK' group by date(time);
+
   SELECT count(log.status) AS count,   +
      date(log."time") AS date          +
     FROM log                           +
@@ -124,3 +131,4 @@ ___
 
 ### Python Script
 Used Python [script](https://github.com/RevanthRedi/newsLogReport/blob/master/logDb.py) that connects to `PostgreSQL` DB and gets result
+Result will be displayed in terminal
