@@ -1,10 +1,16 @@
+#!/usr/bin/env python3
+
 import psycopg2
 
 DB_NAME = "news"
 
 
 def get_posts():
-    db = psycopg2.connect(database=DB_NAME)
+    try:
+        db = psycopg2.connect(database=DB_NAME)
+    except ConnectionError:
+        print("Unable to connect to DB ")
+
     c = db.cursor()
     c.execute(
         "select b.title, count(a.status) "
@@ -70,4 +76,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

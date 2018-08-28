@@ -128,6 +128,22 @@ select * from ("
               " where result >1;
 ```
 ___
+##RUNNING PROGRAM
+
+###Install python3 on your device.
+Although MACBOOK and Linux OS comes with python 2.7 package by default, we need Python3 to run this program.
+You can use [follwoing link](https://www.python.org/downloads/) to download python3 and then run the application to install python.
+
+On Linux distribution python3 can be installed using command
+
+```$ sudo apt-get install python3.6```
+
+In mac OS if you have homebrew, python3 can be installed using following command
+
+```brew install python```
+
+After installing you can check the version using ```python3 --version```
+
 
 ### Python Script
 Used Python [script](https://github.com/RevanthRedi/newsLogReport/blob/master/logDb.py) that connects to `PostgreSQL` DB and gets result
